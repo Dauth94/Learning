@@ -1,0 +1,55 @@
+<!doctype html><html><head></head><body><br />
+<h1> Use YouTube API</h1>
+
+<label for="searchQuery">Search on YouTube</label>
+
+<br /><br />
+
+<input type="text" id="searchQuery" name="searchQuery"/>
+
+<button id="searchButton">Search</button>
+
+<br /><br /><br />
+
+<div id="results">Results</div><script type="text/javascript">const apiKey = "AIzaSyBg2dsK5YrdWufwQNaz0LH319Z5S2FgEI4";
+
+const searchButton = document.getElementById("searchButton");
+
+const resultsDiv = document.getElementById("results");
+ 
+const googleAPIUrl = "https://www.googleapis.com/youtube/v3/search";
+
+searchButton.addEventListener("click", (e) =>{
+
+  const searchTerm = document.getElementById("searchQuery").value;
+
+  console.log(searchTerm);
+
+  const apiPrefix = "&key=";
+
+  const searchQuery = "?part=snippet&q=" + searchTerm + apiPrefix + apiKey;
+
+  const url = googleAPIUrl + searchQuery;
+
+  fetch(url)
+    .then(response => response.json())
+    .then((results) => {
+      
+      results.items.forEach(item =>{
+
+        if (item.id.videoId != undefined) {
+          const link = `https://www.youtube.com/watch?v=${item.id.videoId}`;
+          console.log(link);
+
+          
+          resultsDiv.innerHTML += "<br /><br />";
+
+          resultsDiv.innerHTML += `<a href="${link}">${item.snippet.title}</a>`;
+
+          resultsDiv.innerHTML += "<br /><br />";
+          resultsDiv.innerHTML += `<img src="${item.snippet.thumbnails.high.url}" />`;
+        }
+      })
+    })
+
+});</script></body><html>
