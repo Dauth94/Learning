@@ -4,11 +4,11 @@ Repository for things built from courses
 
 All current projects we're developed through Mammoth Interactive online courses, but I will make sure to credit other sources as needed. 
 
-https://agilemanifesto.org/
+
 
 # Manifesto for Agile Software Development
 
-
+https://agilemanifesto.org/
 
 We are uncovering better ways of developing
 software by doing it and helping others do it.
